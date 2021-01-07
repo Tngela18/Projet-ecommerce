@@ -1,0 +1,74 @@
+<%@ include file="header.jsp" %>
+<div id="layoutSidenav_content">
+    <script>
+        function ConfirmDelete()
+        {
+          var x = confirm("Are you sure you want to delete?");
+          if (x)
+              return true;
+          else
+            return false;
+        }
+        </script>
+    <main>
+<div class="container-fluid">
+                       
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                Gérer les Livreurs
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>Name</th>
+                                                <th>surname</th>
+                                                <th>age</th>
+                                                <th>gender</th>
+                                                <th>phone</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <% for(var i=0; i<users.length;i++) { %>
+                                                <tr>
+                                                    <td><%= i+1 %></td>
+                                                    
+                                                    <td><%= users[i].name %></td>
+                                                    <td><%= users[i].surname %></td>
+                                                    <td><%= users[i].age %></td>
+                                                    <td><%= users[i].gender %></td>
+                                                    <td><%= users[i].phone %></td>
+                                                    
+                                                    <td>
+                                                        <form action='/edit/<%= users[i]._id %>'   >
+                                                            <button type="submit" class="btn btn-success" >Update</button>  
+                                                         </form>
+                                                         
+                                                    </td> 
+                                                    <td>
+                                                        <form action="/delete/<%= users[i]._id %>" Onclick="ConfirmDelete()">
+                                                            <button type="submit" class="btn btn-danger">DELETE</button>  
+                                                         </form>
+                                                    </td>
+ 
+                                                </tr>
+                                            <% } %> 
+                                            
+                                        </tbody>
+
+                                    </table>
+                                    <form action="/aj">
+                                        <div class="row justify-content-center">
+                                        <button type="submit" class="btn btn-primary btn-lg active">Add Livreur</button>
+                                        </div>
+                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
